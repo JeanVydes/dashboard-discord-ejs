@@ -1,0 +1,71 @@
+<div class="profile-me" style="text-align: center;">
+    <img src="<%= theavatar %>" class="rounded-circle" id="avatar"></img>
+    <h1 style="font-size: 38px;">
+        <div style="color: #f8f8f8"><%= username %>#<%= discriminator %> <% if(badges.verified) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Verified" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fverified.svg?1595821898635"/>
+        <% } %></div>
+    </h1>
+    <div class="badges-user">
+        <% if(badges.member) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Member" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fmember.svg?1595821898634"/>
+        <% } %>
+        <% if(badges.youtuber) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Youtuber" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fyoutube.svg?1595821898635"/>
+        <% } %>
+        <% if(badges.streamer) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Streamer" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Ftwitch.svg?1595821895870"/>
+        <% } %>
+        <% if(badges.partner) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Partner" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fpartner.svg?1595821898635"/>
+        <% } %>
+        <% if(badges.booster) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Booster" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fbooster.png?1595821896160"/>
+        <% } %>
+        <% if(badges.donator) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Donator" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fdonator.svg?1595821898635"/>
+        <% } %>
+        <% if(badges.events) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Events" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fevents.svg?1595821896406"/>
+        <% } %>
+        <% if(badges.discord_staff) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Discord Employee" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fdiscord_employee.svg?1595821898635"/>
+        <% } %>
+        <% if(badges.support) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Support" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fsupport.svg?1595821898635"/>
+        <% } %>
+        <% if(badges.moderator) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Moderator" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fmoderator.svg?1595821901783"/>
+        <% } %>
+        <% if(badges.administrator) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Administrator" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fadministrator.svg?1595821900618"/>
+        <% } %>
+        <% if(badges.ultra_secret) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Ultra Secret" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fanonymous.svg?1595821901952"/>
+        <% } %>
+        <% if(badges.developer) { %>
+            <img tabindex="0" data-toggle="tooltip" title="Developer" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fdeveloper.svg?1595821896516"/>
+        <% } %>
+        <% if(badges.ceo) { %>
+            <img tabindex="0" data-toggle="tooltip" title="CEO" id="user-profile-badge-svg" src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Fceo.svg?1595821898635"/>
+        <% } %>
+    </div>
+    <% if(website) { %>
+        <div class="social" style="margin-top: 40px;">
+            <div class="website">
+                <a href="<%= website %>" style="text-decoration: underline; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 500;"><img src="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fwebsite.svg?1595821885747" alt="website" width="30px"> <%= website %></a>
+            </div>
+        </div>
+    <% } %>
+    <% if(id === user_id) { %>
+        <div class="edit-profile" style="margin-top: 40px">
+            <a href="/user/<%= user_id %>/editing" style="border-radius: 30px; padding: 0 10px; color: #4d4d4d; border: 0; background: linear-gradient(160deg, #54f1ac, #5194d8); text-decoration: none;">Edit Profile</a>
+        </div>
+    <% } %>
+    <% if(description) { %>
+        <div class="description" style="border-style: solid; border-radius: 100px; border-width: 1px; border-color: #313131; margin-left: 10%; margin-right: 10%; margin-top: 40px; text-align: center; margin-bottom: 5%;">
+            <h1 style="font-size: 22px; margin-top: 5px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">DESCRIPTION</h1>
+            <br />
+            <p style="color: #ffffff; font-size: 16px;"><%= description %></p>
+        </div>
+    <% } %>
+</div>

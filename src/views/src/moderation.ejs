@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body {
+    max-width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    background: #141414;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+  }
+
+  input[type="text"] {
+    outline: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-top-style: none;
+    background: #141414;
+    color: #ffffff;
+    border-color: rgb(216, 216, 216);
+  }
+
+  #list-all {
+    background: #141414;
+    height: 120px;
+    width: 250px;
+    overflow: auto;
+  }
+
+  #list-all::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  #list-all::-webkit-scrollbar-track {
+    background: #141414;
+  }
+
+  #list-all::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+  }
+
+  #list-all::-webkit-scrollbar-thumb:hover {
+    border-radius: 100px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+  }
+
+  #guild-icon {
+    max-width: 160px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+    padding: 2px;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 0;
+    right: 10px;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .test {
+    margin-top: 50px;
+    display: inline-flex
+  }
+  #this-button-style {
+    border: 0;
+    background: linear-gradient(160deg, #6295c5, #6acc91);
+    color: #e4e4e4;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 4px 15px;
+  }
+
+  #mobile-menu {
+    color: #ff7373;
+    display: none;
+  }
+
+  #reverse-mobile-menu{
+        display: none;
+    }
+
+  .this-menu {
+    display: block;
+  }
+
+  #mentionsRange, #emojisRange{
+    margin-left: 18%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    #newword{
+      margin-left: 30%;
+    }
+  }
+
+  @media only screen and (max-width: 992px) {
+    .header-to-fx {
+      text-align: center;
+    }
+
+    .separator {
+      margin-left: 0;
+    }
+
+    .test {
+      text-align: center;
+      overflow: hidden;
+    }
+
+    label,
+    h1,
+    p,
+    button,
+    input {
+      text-align: center;
+    }
+
+    .this-menu {
+      display: none;
+    }
+
+    #mobile-menu {
+      color: #ff7373;
+      display: block;
+    }
+
+    #reverse-mobile-menu{
+        display: block;
+    }
+
+    #mentionsRange, #emojisRange{
+      margin-left: 18%;
+    }
+
+    .custom-control-label{
+      width: 100%;
+    }
+  }
+
+
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/<%= guild_id %>/<%= guild_icon %>.png">
+  <title>Jean Bot - <%= guild_name %></title>
+</head>
+
+<body style="background: #141414;">
+  <%- include("modules/default/menu") -%>
+
+  <div class="back-h11"
+    style="position: absolute; margin-left: 25px; font-size: 25px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;">
+    <a href="/guild/<%= guild_id %>/"><i class="fas fa-arrow-left"></i></a>
+  </div>
+  <div>
+    <div class="header-to-fx" style="margin-top: 120px; text-align: center;">
+      <% if(guild_icon){ %>
+            <img src="https://cdn.discordapp.com/icons/<%= guild_id %>/<%= guild_icon %>.png" id="guild-icon" class="guild-icon rounded-circle" />
+          <% } else { %>
+            <img src="https://images-ext-2.discordapp.net/external/NAqkMZNPJgDiWBrSDqniAD1_sbWfiPqF4mgZyCtVs6s/https/discordapp.com/assets/6debd47ed13483642cf09e832ed0bc1b.png" id="guild-icon" class="guild-icon guild-icon rounded-circle" />
+          <% } %>
+        <div class="panel panel-default" style="color: #c2e4e2; font-size: 35px;">
+          <p class="panel-body"><%= guild_name %></p>
+        </div>
+    </div>
+    <div></div>
+    <div></div>
+  </div>
+  <div
+    style="border-style: solid; border-color: rgb(39, 39, 39); border-width: 0.1px; margin-left: 15%; margin-right: 15%; margin-top: 10px;">
+  </div>
+  <div class="dashboard-guild-options" style="text-align: center;">
+    <div class="dashboard-automoderator-modules mr-auto p-2 test">
+      <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/modules/update" class="form-horizontal">
+        <div>
+          <label style="color: #c7c7c7; font-weight: 700;">AUTOMODERATOR</label>
+        </div>
+        <div class="form-group uk-align-center">
+          <div class="col-9 col-sm-12">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(bad){ %>
+                <input name="bad" class="custom-control-input" type="checkbox" class="custom-control-input" id="bad1"
+                  checked>
+              <% } else if(!bad){ %>
+                <input name="bad" class="custom-control-input" type="checkbox" class="custom-control-input" id="bad1">
+              <% } %>
+                <label class="custom-control-label" for="bad1" style="color: #f1f1f1;">Anti Bad Words</label>
+              </div>
+            </label>
+          </div>
+          <div class="col-9 col-sm-12">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(links){ %>
+                <input name="links" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="links1" checked>
+              <% } else if(!links){ %>
+                <input name="links" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="links1">
+              <% } %>
+              <label class="custom-control-label" for="links1" style="color: #f1f1f1;">Anti Links</label>
+              </div>
+            </label>
+          </div>
+          <div class="col-9 col-sm-12">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(invites){ %>
+                <input name="invites" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="invites1" checked>
+              <% } else if(!invites){ %>
+                <input name="invites" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="invites1">
+              <% } %>
+              <label class="custom-control-label" for="invites1" style="color: #f1f1f1;">Anti Invites</label>
+              </div>
+            </label>
+          </div>
+          <div class="col-9 col-sm-12">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(mentions){ %>
+                <input name="mentions" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="mentions1" checked>
+              <% } else if(!mentions){ %>
+                <input name="mentions" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="mentions1">
+              <% } %>
+                <label class="custom-control-label" for="mentions1" style="color: #f1f1f1;">Anti Mass Mentions</label>
+              </div>
+            </label>
+          </div>
+          <div class="col-9 col-sm-12">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(emojis){ %>
+                <input name="emojis" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="emojis1" checked>
+              <% } else if(!emojis){ %>
+                <input name="emojis" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="emojis1">
+              <% } %>
+              <label class="custom-control-label" for="emojis1" style="color: #f1f1f1;">Anti Mass Emojis</label>
+              </div>
+            </label>
+          </div>
+          <div class="col-9 col-sm-12">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(images){ %>
+                <input name="images" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="images1" checked>
+              <% } else if(!images){ %>
+                <input name="images" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="images1">
+              <% } %>
+                <label class="custom-control-label" for="images1" style="color: #f1f1f1;">Anti Images</label>
+              </div>
+            </label>
+          </div>
+          <div class="col-9 col-sm-12" style="display: none;">
+            <label class="form-switch">
+              <div class="custom-control custom-switch">
+              <% if(caps){ %>
+                <input name="caps" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="caps1" checked>
+              <% } else if(!caps){ %>
+                <input name="caps" class="custom-control-input" type="checkbox" class="custom-control-input"
+                  id="caps1">
+              <% } %>
+                <label class="custom-control-label" for="caps1" style="color: #f1f1f1;">Anti Mass Caps</label>
+              </div>
+            </label>
+          </div>
+        </div>
+        <button id="this-button-style" style="margin-top: -2.5px; padding: 1px 4px;" type="submit" onclick="f()"
+          onchange="f()" id="prefix-button">Update</button>
+      </form>
+    </div>
+    <div class="dashboard-automoderator-settings mr-auto p-2 test separator">
+      <div>
+        <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/settings/update" class="form-horizontal">
+          <div class="form-group uk-align-center">
+            <div class="col-9 col-sm-12">
+              <div>
+                <label style="color: #c7c7c7; font-weight: 700;">MENTIONS MAX LIMIT</label>
+              </div>
+              <label class="form-group row" style="margin-left: 0;">
+                <input type="range" id="mentionsRange" name="mentionsRange" min="2" max="100" value="<%= mentionsrange %>"
+                  style="color: #99ddfd; border: 0;" oninput="amount.value=mentionsRange.value">
+                <output id="amount" name="amount" for="mentionsRange"
+                  style="color: #f1f1f1; margin-left: 10px;"><%= mentionsrange %></output>
+              </label>
+            </div>
+            <div class="col-9 col-sm-12">
+              <div>
+                <label style="color: #c7c7c7; font-weight: 700;">EMOJIS MAX LIMIT</label>
+              </div>
+              <label class="form-group row" style="margin-left: 0;">
+                <input type="range" id="emojisRange" name="emojisRange" min="2" max="100" value="<%= emojisrange %>"
+                  style="color: #99ddfd; border: 0;" oninput="amount2.value=emojisRange.value">
+                <output id="amount2" name="amount2" for="emojisRange"
+                  style="color: #f1f1f1; margin-left: 10px;"><%= emojisrange %></output>
+              </label>
+            </div>
+          </div>
+          <button id="this-button-style" style="margin-top: -2.5px; padding: 1px 4px;" type="submit" onclick="f()"
+            onchange="f()">Update</button>
+        </form>
+        <div style="margin-top: 40px;">
+          <div id="add-wordd">
+            <div>
+              <label style="color: #c7c7c7; font-weight: 700;">PROHIBITED WORDS</label>
+            </div>
+            <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/bad/word/add" class="form-horizontal">
+              <div class="col-9 col-sm-12">
+                <input name="word" maxlength="30" type="text" id="newword" placeholder="Word"
+                  onkeypress="return AvoidSpace(event)" style="color: #ffffff; width: 130px;" required>
+                <button style="margin-left: 15px;" id="this-button-style" class="submitword" type="submit" onclick="check()"
+                  onchange="check()" id="word-button">+</button>
+              </div>
+            </form>
+          </div>
+          <div id="list-all" style="margin-top: 20px;">
+            <% for(const e of bad_words) {%>
+            <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/bad/word/delete" class="form-horizontal">
+              <input class="form-input"
+                name="word" type="text" style="display: none;" value="<%= e %>" required><button style="border: 0; background: #14141400; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;"><%= e %> <i
+                  class="fas fa-times-circle" style="-webkit-text-fill-color: #d16363;"></i></button><br />
+            </form>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-automoderator-preferences mr-auto p-2 test separator">
+      <div class="dashboard-ignore-channels">
+        <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/ignored-channels/update"
+          class="form-horizontal">
+          <div>
+            <label style="color: #c7c7c7; font-weight: 700;">CHANNELS IGNORED</label>
+          </div>
+          <select name="channels" class="form-control" id="list-all" style="border: 0;" multiple required>
+            <option style="color: #808080; font-weight: 600;">Choose any channel.</option>
+            <% let channels = guild_channels %>
+            <% if(!channels) return; %>
+            <% for(const e of channels) { %>
+            <option value="<%= e.id %>" style="color: #f1f1f1; border: 0;">#<%= e.name %></option>
+            <% } %>
+          </select>
+          <br />
+          <button id="this-button-style" style="margin-top: 5px;" type="submit" id="prefix-button">+</button>
+          <br />
+          <br />
+        </form>
+        <div style="margin-left: 2%;" id="list-all">
+          <% for(const tbt of guild_channels_ignored_moderator) { %>
+          <% let guilds = bot.guilds.get(guild_id).channels; %>
+          <% if(!guilds) return %>
+          <% let channel = guilds.find(e => e.id === tbt); %>
+          <% if(!channel) return; %>
+          <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/ignored-channel/delete"
+            class="form-horizontal">
+            </p><input class="form-input" name="channel" type="text" id="channel" style="display: none;"
+              value="<%= channel.id %>" required><button style="border: 0; background: #14141400; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;">#<%= channel.name %> <i
+                class="fas fa-times-circle" style="-webkit-text-fill-color: #d16363;"></i></button><br />
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-automoderator-preferences mr-auto p-2 test separator">
+      <div class="dashboard-ignore-roles">
+        <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/ignored-roles/update" class="form-horizontal">
+          <div>
+            <label style="color: #c7c7c7; font-weight: 700;">ROLES IGNORED</label>
+          </div>
+          <select name="roles" class="form-control" id="list-all" style="border: 0;" multiple required>
+            <option style="color: #808080; font-weight: 600;">Choose any role.</option>
+            <% for (const e of guild_roles) { %>
+            <% let color = e.color; %>
+            <% if(e.color === 0){ %>
+              <% color = "A7A7A7"; %>
+            <% } else { %>
+              <% color = e.color.toString(16);%>
+            <% } %>
+            <option value="<%= e.id %>" style="color: #<%= color %>; border: 0;">@<%= e.name %></option>
+            <% } %>
+          </select>
+          <br />
+          <button id="this-button-style" style="margin-top: 5px;" type="submit" onclick="f()" onchange="f()"
+            id="prefix-button">+</button>
+        </form>
+        <div style="margin-left: 2%; margin-top: 25px;" id="list-all">
+          <% for(const tbtm of guild_roles_ignored_moderator) { %>
+          <% let guilds = bot.guilds.get(guild_id); %>
+          <% if(!guilds) return; %>
+          <% let role = guilds.roles.find(e => e.id === tbtm); %>
+          <% if(!role) role = { name: "Deleted", color: "A7A7A7" }; %>
+          <form method="POST" action="/guild/<%= guild_id %>/auto-moderator/ignored-roles/delete"
+            class="form-horizontal">
+            <% let color = role.color; %>
+            <% if(role.color === 0){ %>
+              <% color = "A7A7A7"; %>
+            <% } else { %>
+              <% color = role.color.toString(16);%>
+            <% } %>
+            <input class="form-input" name="role" type="text" id="role" style="display: none;" value="<%= tbtm %>"
+              required></input><button style="border: 0; background: #14141400; color: #<%= color %>">@<%= role.name %> <i
+                class="fas fa-times-circle" style="-webkit-text-fill-color: #d16363;"></i></button><br />
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <script>
+    var x = document.getElementById("newword");
+
+    var n = <%- JSON.stringify(bad_words) %>;
+
+      function check() {
+        console.log(x.value)
+        if (n.includes(x.value)) {
+          alert("This word is already listed.")
+          return event.preventDefault();
+        }
+
+        if (x.value.length > 30) {
+          alert("This word is so long.")
+          return event.preventDefault();
+        }
+
+        if (x.value.length < 2) {
+          alert("This word is so short.")
+          return event.preventDefault();
+        }
+
+        let allowed = /[a-zA-Z0-9]/g;
+
+        if (!allowed.test(x.value)) {
+           
+          return event.preventDefault();
+        }
+      }
+
+    function AvoidSpace(event) {
+      if (event.which == 32) return false;
+    }
+
+    function updateTextInput(val) {
+      document.getElementById('mentionsRangeText').value = val;
+    }
+  </script>
+</body>
+
+</html>

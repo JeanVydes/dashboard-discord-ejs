@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body {
+    max-width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    background: #141414;
+    margin: 0;
+    background-repeat: no-repeat;
+  }
+
+  .guild-icon {
+    width: 140px;
+  }
+  
+  .this-guild{
+    margin-left: 15px;
+  }
+  
+  .no-listed {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+  }
+  
+  .locked-module {
+    cursor: not-allowed;
+  }
+
+  .card-module {
+    justify-content: center;
+  }
+
+  .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  #mobile-menu {
+    color: #ff7373;
+    display: none;
+  }
+
+  .this-menu {
+    display: block;
+  }
+
+  #reverse-mobile-menu {
+    display: none;
+  }
+  
+  #invite-button {
+        margin-top: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #7289DA;
+        border-radius: 10px;
+        background-color: #7289DA;
+        color: #ffffff;
+        font-size: 18px;
+        padding: 1px 10px;
+  }
+  
+  #manage-button {
+        border: 0;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: linear-gradient(140deg, #54f1ac, #5194d8);
+        color: #ffffff;
+        font-size: 18px;
+        padding: 1px 10px;
+  }
+  
+  #manage-button:hover {
+        margin-top: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #7289DA;
+        border-radius: 10px;
+        background: #7289DA;
+        color: #ffffff;
+        font-size: 18px;
+        padding: 1px 10px;
+  }
+  
+  #invite-button:hover{
+        background: linear-gradient(140deg, #54f1ac, #5194d8);
+        -webkit-text-fill-color: transparent; 
+        -webkit-background-clip: text; 
+  }
+
+  @media only screen and (max-width: 992px) {
+    .this-menu {
+      display: none;
+    }
+
+    #mobile-menu {
+      color: #ff7373;
+      display: block;
+    }
+
+    #reverse-mobile-menu {
+      display: none;
+    }
+    
+    .this-guild{
+      margin-left: 0;
+    }
+  }
+
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+<meta name="description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:title" content="Jean Bot"/>
+    <meta property="og:description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:image" content="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180" />
+    <meta property="og:url" content=" https://botjean.glitch.me/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7289DA">
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180">
+  <title>Jean Bot - My Guilds</title>
+</head>
+
+<body style="background: #141414;">
+  <%- include("modules/default/menu") -%>
+  <div class="my-guilds" style="text-align: center; margin-top: 100px;">
+    <!-- Botones ya hechos, añadirle un for cada guild en cada uno, y poner su ID y en la invitacion directamente a la id del gremio -->
+    <% for(const x of guilds) { %>
+      <% let getGuild = bot.guilds.get(x.id) %>
+      <% if(getGuild) { %>
+        <% if(!getGuild) return; %>
+        <% let hasPermission = getGuild.members.find(e => e.id === id).permission.has("manageGuild"); %>
+        <% if(!hasPermission) return; %>
+        <div class="this-guild" style="display: inline-block; margin-top: 10px;">
+          
+          <% if(x.icon){ %>
+            <img src="https://cdn.discordapp.com/icons/<%= x.id %>/<%= x.icon %>.png" class="guild-icon rounded-circle" />
+          <% } else { %>
+            <img src="https://images-ext-2.discordapp.net/external/NAqkMZNPJgDiWBrSDqniAD1_sbWfiPqF4mgZyCtVs6s/https/discordapp.com/assets/6debd47ed13483642cf09e832ed0bc1b.png" class="guild-icon guild-icon rounded-circle" />
+          <% } %>
+
+          <div class="manage-guild">
+            <a id="this-href" href="/guild/<%= x.id %>">
+              <button class="gen-button" id="manage-button">Manage</button>
+            </a>
+          </div>
+        </div>
+        <% } else {%>
+        <div class="this-guild" style="display: inline-block; margin-top: 10px;">
+          <% if(x.icon){ %>
+            <img src="https://cdn.discordapp.com/icons/<%= x.id %>/<%= x.icon %>.png" class="guild-icon no-listed guild-icon rounded-circle" />
+          <% } else { %>
+            <img src="https://images-ext-2.discordapp.net/external/NAqkMZNPJgDiWBrSDqniAD1_sbWfiPqF4mgZyCtVs6s/https/discordapp.com/assets/6debd47ed13483642cf09e832ed0bc1b.png" class="guild-icon no-listed guild-icon rounded-circle" />
+          <% } %>
+
+        <div class="invite-to-guild">
+          <a id="this-href" href="https://discord.com/oauth2/authorize?scope=bot&response_type=code&redirect_uri=https%3A%2F%2Fbotjean.glitch.me%2Fauth%2Fredirect&permissions=943189247&client_id=732305355819843615&guild_id=<%= x.id %>">
+            <button class="gen-button" id="invite-button">Invite</button>
+          </a>
+        </div>
+      </div>
+      <% } %>
+    <% } %>
+  </div>
+</body>
+</html>

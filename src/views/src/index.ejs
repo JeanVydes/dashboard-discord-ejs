@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    
+    <meta name="description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:title" content="Jean Bot"/>
+    <meta property="og:description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:image" content="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180" />
+    <meta property="og:url" content=" https://botjean.glitch.me/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7289DA">
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"><!-- https://cdn.discordapp.com/avatars/732305355819843615/7358a2194c4e9faef977e5a77c6ed874.png?size=2048 -->
+    <link rel="icon" type="image/png" href="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180">
+    <title>Jean Bot</title>
+</head>
+
+<body>
+    <%- include("modules/default/menu") -%>
+    <div class="content-home">
+        <div class="connect-to-jean">
+            <img class="rounded-circle" id="jean-avatar" src="https://images-ext-2.discordapp.net/external/rT0B7Qnf-wbQqGAyoEr8dCP4ZOT_RDTaXdj7BqDRXFg/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/732305355819843615/7358a2194c4e9faef977e5a77c6ed874.png?size=2048">
+            <div class="connect-or-dashboard-and-invite">
+                <% if(show) {%>
+                    <a id="bot-dashboard-link" class="button" style="text-decoration: none;" href="/dashboard">Dashboard</a>
+                <% } else { %>
+                    <a id="bot-login-link" class="button" style="text-decoration: none;" href="/auth">Login</a>
+                <% } %>
+                <a id="bot-invite-link" class="button" style="text-decoration: none;" href="https://discord.com/oauth2/authorize?scope=bot&response_type=code&redirect_uri=https%3A%2F%2Fbotjean.glitch.me%2F&permissions=943189247&client_id=732305355819843615">Invite Me</a>
+            </div>
+            <div
+                style="border-style: solid; border-color: rgb(39, 39, 39); border-width: 0.1px; margin-left: 15%; margin-right: 15%; margin-top: 80px;">
+            </div>
+            <div class="stats" style="margin-top: 80px;">
+                <div class="guilds size1">
+                    <h1><span id="the-stats"><%= guilds %></span> Guilds</h1>
+                </div>
+                <div class="users size">
+                    <h1><span id="the-stats"><%= users %></span> Users</h1>
+                </div>
+                <div class="shards size">
+                    <h1><span id="the-stats"><%= shards %></span> Shards</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    body {
+        width: 100%;
+        font-family: 'Quicksand', sans-serif;
+        background: #141414;
+    }
+
+    #mobile-menu {
+        color: #ff7373;
+        display: none;
+    }
+
+    #reverse-mobile-menu{
+        display: none;
+    }
+
+    .this-menu {
+        display: block;
+    }
+
+    .size1{
+        color: #ffffff;
+        display: inline-block;
+    }
+
+    .size{
+        margin-left: 10%;
+        display: inline-block;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    h1{
+        font-size: 32px;
+    }
+
+    #the-stats{
+        font-size: 32px;
+        background: linear-gradient(140deg, #54f1ac, #5194d8);
+        -webkit-text-fill-color: transparent; 
+        -webkit-background-clip: text; 
+        font-weight: 600;
+    }
+
+    .button {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #7289DA;
+        border-radius: 10px;
+        background-color: #7289DA;
+        color: #ffffff;
+        font-size: 18px;
+        padding: 1px 10px;
+        animation: button 6s ease-in-out infinite
+    }
+  
+    #bot-login-link:hover, #bot-dashboard-link:hover, #bot-invite-link:hover{
+        background: linear-gradient(140deg, #54f1ac, #5194d8);
+        -webkit-text-fill-color: transparent; 
+        -webkit-background-clip: text; 
+    }
+
+    .button:hover {
+    }
+
+    .connect-or-dashboard-and-invite{
+        margin-top: 50px;
+    }
+
+    .connect-to-jean{
+        margin-top: 170px;
+        text-align: center;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translatey(0px);
+        }
+        50% {
+            transform: translatey(-10px);
+        }
+        100% {
+            transform: translatey(0px);
+        }
+    }
+
+    #jean-avatar {
+        width: 350px;
+        animation: float 6s ease-in-out infinite
+    }
+
+    @media only screen and (max-width: 992px) {
+
+        #all-cards {
+            margin-top: 40px;
+        }
+
+        .card-separator {
+            margin-left: 0;
+        }
+
+        .this-menu {
+            display: none;
+        }
+
+        #mobile-menu {
+            color: #ff7373;
+            display: block;
+        }
+
+        #reverse-mobile-menu{
+            display: block;
+        }
+    }
+</style>
+
+</html>

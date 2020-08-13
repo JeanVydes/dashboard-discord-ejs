@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body {
+    width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    background: #141414;
+    margin: 0;
+    background-repeat: no-repeat;
+  }
+
+  input[type="text"] {
+    outline: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-top-style: none;
+    background: #141414;
+    color: #ffffff;
+    border-color: rgb(216, 216, 216);
+  }
+
+  #list-all {
+    background: #141414;
+    height: 120px;
+    width: 250px;
+    overflow: auto;
+  }
+  
+  .locked-module {
+    cursor: not-allowed;
+  }
+
+  .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  #list-all::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  #list-all::-webkit-scrollbar-track {
+    background: #141414;
+  }
+
+  #list-all::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+  }
+
+  #list-all::-webkit-scrollbar-thumb:hover {
+    border-radius: 100px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+  }
+
+  #guild-icon {
+    max-width: 160px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+    padding: 2px;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 0;
+    right: 10px;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .test {
+    margin-top: 50px;
+    display: inline-flex
+  }
+
+  .separator {
+    margin-left: 5%;
+  }
+
+  #this-button-style {
+    border: 0;
+    background: linear-gradient(160deg, #6295c5, #6acc91);
+    color: #e4e4e4;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 4px 15px;
+  }
+
+  #mobile-menu {
+    color: #ff7373;
+    display: none;
+  }
+
+  #reverse-mobile-menu {
+    display: none;
+  }
+
+  @media only screen and (max-width: 992px) {
+    .header-to-fx {
+      text-align: center;
+    }
+
+    .separator {
+      margin-left: 0;
+    }
+
+    .test {
+      overflow: hidden;
+    }
+
+    label,
+    h1,
+    p,
+    button,
+    input {
+      left: 0;
+      text-align: center;
+    }
+
+    .this-menu {
+      display: none;
+    }
+
+    #mobile-menu {
+      color: #ff7373;
+      display: block;
+    }
+
+    #reverse-mobile-menu {
+      display: block;
+    }
+
+    #color{
+      height: 50px;
+      width: 100%;
+    }
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <meta name="description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:title" content="Jean Bot"/>
+    <meta property="og:description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:image" content="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180" />
+    <meta property="og:url" content=" https://botjean.glitch.me/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7289DA">
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/<%= guild_id %>/<%= guild_icon %>.png">
+  <title>Jean Bot - <%= guild_name %></title>
+</head>
+
+<body style="background: #141414;">
+  <%- include("modules/default/menu") -%>
+  <div class="back-h11"
+    style="position: absolute; margin-left: 25px; font-size: 25px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;">
+    <a href="/guild/<%= guild_id %>/"><i class="fas fa-arrow-left"></i></a>
+  </div>
+  <div>
+    <div class="header-to-fx" style="margin-top: 120px; text-align: center;">
+      <% if(guild_icon){ %>
+            <img src="https://cdn.discordapp.com/icons/<%= guild_id %>/<%= guild_icon %>.png" id="guild-icon" class="guild-icon rounded-circle" />
+          <% } else { %>
+            <img src="https://images-ext-2.discordapp.net/external/NAqkMZNPJgDiWBrSDqniAD1_sbWfiPqF4mgZyCtVs6s/https/discordapp.com/assets/6debd47ed13483642cf09e832ed0bc1b.png" id="guild-icon" class="guild-icon guild-icon rounded-circle" />
+          <% } %>
+        <div class="panel panel-default" style="color: #c2e4e2; font-size: 35px;">
+          <p class="panel-body"><%= guild_name %></p>
+        </div>
+    </div>
+    <div></div>
+    <div></div>
+  </div>
+  <div
+    style="border-style: solid; border-color: rgb(39, 39, 39); border-width: 0.1px; margin-left: 15%; margin-right: 15%; margin-top: 30px;">
+  </div>
+  <div class="dashboard-guild-options" style="text-align: center;">
+    <div class="dashboard-prefix mr-auto p-2 test">
+      <div>
+        <form method="POST" action="/guild/<%= guild_id %>/prefix/update" class="form-horizontal">
+          <div class="form-group uk-align-center" style="display: inline-block;">
+            <div class="col-9 col-sm-12">
+              <input name="prefix" id="prefix" maxlength="10" type="text" placeholder="!"
+                onkeypress="return AvoidSpace(event)" style="color: #ffffff; width: 140px;" required>
+            </div>
+          </div>
+          <button id="this-button-style" style="margin-top: -2.5px;" type="submit" onclick="check()" onchange="check()"
+            id="prefix">+</button>
+        </form>
+        <div style="margin-left: 2%;" id="list-all">
+          <% for(const e of guild_prefixes){%>
+          <form method="POST" action="/guild/<%= guild_id %>/prefix/delete" class="form-horizontal">
+            <p style="display: inline-block; margin-left: 10px; color: #ffffff;" id="prefix-name"><%= e %></p><input
+              class="form-input" name="prefix" type="text" id="prefix" style="display: none;" value="<%= e %>"
+              required><button style="border: 0; background: #00000000;color: #d16363;"><i
+                class="fas fa-times-circle"></i></button><br />
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-modules mr-auto p-2 separator test">
+      <div>
+        <form method="POST" action="/guild/<%= guild_id %>/modules/update" class="form-horizontal" id="modules-update">
+          <div>
+            <label style="color: #c7c7c7; font-weight: 700;">MODULES</label>
+          </div>
+          <div class="form-group uk-align-center">
+            <div class="col-9 col-sm-12">
+              <label class="form-switch">
+                <% if(moderation){ %>
+                <div class="custom-control custom-switch">
+                  <input name="moderation-module" type="checkbox"
+                    class="custom-control-input" id="customSwitch1" style="background: #141414;" checked>
+                  <label class="custom-control-label" for="customSwitch1" style="color: #f1f1f1;">Moderation</label>
+                </div>
+                <% } else if(!moderation){ %>
+                <div class="custom-control custom-switch">
+                  <input name="moderation-module" type="checkbox"
+                    class="custom-control-input" id="customSwitch1">
+                  <label class="custom-control-label" for="customSwitch1" style="color: #f1f1f1;">Moderation</label>
+                </div>
+                <% } %>
+              </label>
+            </div>
+            <div class="col-9 col-sm-12 ">
+              <label class="form-switch">
+                <% if(utility){ %>
+                <div class="custom-control custom-switch">
+                  <input name="utility-module" type="checkbox"
+                    class="custom-control-input" id="customSwitch2" checked>
+                  <label class="custom-control-label" for="customSwitch2" style="color: #f1f1f1;">Utility</label>
+                </div>
+                <% } else if(!utility){ %>
+                <div class="custom-control custom-switch">
+                  <input name="utility-module" type="checkbox"
+                    class="custom-control-input" id="customSwitch2">
+                  <label class="custom-control-label" for="customSwitch2" style="color: #f1f1f1;">Utility</label>
+                </div>
+                <% } %>
+              </label>
+            </div>
+            <div class="col-9 col-sm-12 locked-module no-select">
+              <label class="form-switch locked-module no-select">
+                <% if(music){ %>
+                <div class="custom-control custom-switch locked-module no-select">
+                  <label class="custom-control-label locked-module no-select" for="customSwitch3" style="color: #f1f1f1;">Music</label>
+                </div>
+                <% } else if(!music){ %>
+                <div class="custom-control custom-switch locked-module no-select">
+                  <label class="custom-control-label locked-module no-select" for="customSwitch3" style="color: #f1f1f1;">Music</label>
+                </div>
+                <% } %>
+              </label>
+            </div>
+          </div>
+          <button id="this-button-style" style="margin-top: -2.5px; padding: 1px 4px;" type="submit" onclick="f()"
+            onchange="f()" id="prefix-button">Update</button>
+        </form>
+      </div>
+    </div>
+    <div class="dashboard-ignore-channels mr-auto p-2 separator test">
+      <div>
+        <form method="POST" action="/guild/<%= guild_id %>/ignored-channels/update" class="form-horizontal">
+          <div>
+            <label style="color: #c7c7c7; font-weight: 700;">IGNORED CHANNELS</label>
+          </div>
+          <select name="channels" class="form-control" id="list-all" style="border: 0;" multiple required>
+            <option style="color: #808080; font-weight: 600;">Choose any channel.</option>
+            <% let channels = guild_channels %>
+            <% for(const channelMe of channels) { %>
+            <option value="<%= channelMe.id %>" style="color: #f1f1f1; border: 0;">#<%= channelMe.name %></option>
+            <% } %>
+          </select>
+          <div class="dashboard-ignore-channels-delete">
+          </div>
+          <br />
+          <button id="this-button-style" style="margin-top: 5px;" type="submit" onclick="f()" onchange="f()"
+            id="prefix-button">+</button>
+          <br />
+          <br />
+        </form>
+        <div style="margin-left: 2%;" id="list-all">
+          <% for(const qw of guild_channels_ignored) { %>
+          <% let guilds = bot.guilds.get(guild_id).channels; %>
+          <% let channel = guilds.find(e => e.id === qw); %>
+          <% if(!channel) return; %>
+          <form method="POST" action="/guild/<%= guild_id %>/ignored-channel/delete" class="form-horizontal">
+            </p><input class="form-input" name="channel" type="text" id="channel" style="display: none;"
+              value="<%= channel.id %>" required><button style="border: 0; background: #14141400; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;">#<%= channel.name %> <i
+                class="fas fa-times-circle" style="-webkit-text-fill-color: #d16363;"></i></button><br />
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-misc mr-auto p-2 separator test">
+      <div id="misc">
+        <form method="POST" action="/guild/<%= guild_id %>/misc/update" class="form-horizontal" id="misc-update">
+          <div>
+            <label style="color: #c7c7c7; font-weight: 700;">MISC</label>
+          </div>
+          <div class="form-group uk-align-center">
+            <div class="col-9 col-sm-12" style="display: inline-block;">
+              <input name="color" id="color" style="border: 0; display: inline-block; background: #14141400;" value="#<%= color %>" type="color">
+              <label for="color" style="color: #ffffff; display: inline-block;">Main Color </label>
+            </div>
+          </div>
+          <button id="this-button-style" style="margin-top: -2.5px; padding: 1px 4px;" type="submit" onclick="f()"
+            onchange="f()" id="prefix-button">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    var x = document.getElementById("prefix");
+
+    var n = <%- JSON.stringify(guild_prefixes) %>;
+
+    function test() {
+      alert("test")
+    }
+
+    function AvoidSpace(event) {
+      var k = event ? event.which : window.event.keyCode;
+      if (k == 32) return false;
+    }
+
+    function check() {
+      if (n.includes(x.value)) {
+        alert("This prefix is already listed.")
+        return event.preventDefault();
+      }
+
+      if (x.value.length > 10) {
+        alert("This prefix is so long.")
+        return event.preventDefault();
+      }
+
+
+    }
+  </script>
+</body>
+
+</html>

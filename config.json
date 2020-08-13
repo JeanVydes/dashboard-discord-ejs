@@ -1,0 +1,9 @@
+{
+    "CLIENT_ID": "client id",
+    "CLIENT_SECRET": "client secret",
+    "CLIENT_BOT_TOKEN": "bot token",
+    "CLIENT_REDIRECT": "/auth/redirect",
+    "CLIENT_URL": "website url",
+    "CLIENT_PORT": 3000,
+    "MONGO_URL": "mongo atlas url"
+}

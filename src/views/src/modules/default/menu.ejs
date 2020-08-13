@@ -1,0 +1,69 @@
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<div class="menu">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg"
+        style="-webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,1);
+        -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,1);
+        box-shadow: 0px 4px 5px 0px rgba(0,0,0,1);background-color: #151515;">
+        <a class="navbar-brand"
+            style="font-weight: 500; background: linear-gradient(69deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-family: 'Press Start 2P', cursive; margin-top: 5px;">Jean
+            Bot</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: 0; margin-right: -10px;">
+            <i class="fas fa-bars" style="color: #ffffff;"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"
+                        style="background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard"
+                        style="background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/support"
+                        style="background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Support</a>
+                </li>
+                <% if(!show) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth" id="reverse-mobile-menu" style="background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Login</a>
+                    </li>
+                <% } else if(show) { %>
+                <li class="nav-item" id="mobile-menu">
+                    <a class="nav-link" href="/user/<%= id %>"
+                        style="background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" id="mobile-menu">Logout</a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="this-menu">
+            <div class="nav navbar-nav navbar-right text-inline menu-user-avatar" id="menu-user-avatar">
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-dark"
+                    style="background: #000000; position: absolute;" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/user/<%= id %>"
+                        style="background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <% if(show) { %>
+                        <a class="dropdown-item" href="/logout" style="color: #ff7373;">Logout</a>
+                    <% } %>
+                </div>
+                <% if(!show) { %>
+                <a href="/auth"
+                    style=" background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text;"><i
+                        class="fad fa-key"></i> Login</a>
+                <% } %>
+                <% if(show) { %>
+                <img src="<%= avatar %>" width="50px" height="50" id="menu-session" class="rounded-circle avatar-user"
+                    class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                </img>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+</div>

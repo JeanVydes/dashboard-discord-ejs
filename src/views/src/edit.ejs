@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <meta name="description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:title" content="Jean Bot - <%= username %>"/>
+    <meta property="og:description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:image" content="<%= avatar %>" />
+    <meta property="og:url" content=" https://botjean.glitch.me/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7289DA">
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="<%= avatar %>">
+    <title>Jean Bot - <%= username %></title>
+</head>
+
+<body>
+    <%- include("modules/default/menu") -%>
+    <div class="editForm" style="margin-top: 200px; margin-left: 10%; margin-right: 10%;">
+        <div class="title" style="text-align: center;">
+            <h1 style="font-size: 40px; background: linear-gradient(50deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;"><%= username %> Profile</h1>
+        </div>
+        <form method="POST" action="/user/<%= id %>/edit/update" class="form-horizontal">
+            <label for="description" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Description</label>
+            <div class="input-group mb-3">
+                <input name="description" type="text" class="form-control" placeholder="Description" aria-label="Description"
+                    aria-describedby="basic-addon1" id="descriptionInput" value="<%= description %>">
+            </div>
+            <label for="website" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Website</label>
+            <div class="input-group mb-3">
+                <input name="website" type="text" class="form-control" placeholder="Website" aria-label="Website"
+                    aria-describedby="basic-addon1" id="websiteInput" value="<%= website %>">
+            </div>
+            
+            <a href="/user/<%= id %>" src="/user/<%= id %>" class="btn btn-outline-danger">Cancel</a>
+            <button class="btn btn-outline-success" type="submit" onclick="check()" onchange="check()">Save</button>
+        </form>
+    </div>
+    <script>
+        let checkDescription = document.getElementById("descriptionInput");
+        let actualDescription = <%- JSON.stringify(description) -%>;
+        let checkWebsite = document.getElementById("websiteInput");
+
+        function check() {
+            if(checkDescription.value.length > 300){
+                alert("You reach the max characters");
+                return event.preventDefault();
+            }
+
+            if(checkWebsite.value.length > 300){
+                alert("You reach the max characters");
+                return event.preventDefault();
+            }
+
+            let matchThis = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+            let withThis = new RegExp(matchThis);
+
+            if(checkWebsite.length > 1) {
+                if(!checkWebsite.value.match(withThis)){
+                    alert("This is not are a website.");
+                    return event.preventDefault();
+                }
+            }
+        }
+    </script>
+</body>
+<style>
+    body {
+        max-width: 100%;
+        font-family: 'Quicksand', sans-serif;
+        background-color: #141414;
+        margin: 0;
+    }
+
+    #user-profile-badge {
+        display: inline-block;
+        margin-top: -29px;
+        color: #494949;
+        margin-left: 3px;
+        font-size: 22px;
+    }
+
+    #user-profile-badge-svg {
+        display: inline-block;
+        margin-top: -9px;
+        width: 30px;
+        margin-left: 3px;
+    }
+
+    #avatar {
+        margin-top: 10%;
+        width: 22rem;
+        background: linear-gradient(160deg, #54f1ac, #5194d8);
+        padding: 8px;
+    }
+
+    #mobile-menu {
+        color: #ff7373;
+        display: none;
+    }
+
+    .this-menu {
+        display: block;
+    }
+
+    input[type="text"] {
+    outline: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-top-style: none;
+    background: #141414;
+    color: #ffffff;
+    border-color: rgb(216, 216, 216);
+  }
+
+    @media only screen and (max-width: 992px) {
+        .header-to-fx {
+            text-align: center;
+        }
+
+        .separator {
+            margin-left: 0;
+        }
+
+        .test {
+            max-width: 50%;
+            overflow: hidden;
+        }
+
+        label,
+        h1,
+        p,
+        button,
+        input {
+            margin-right: 5%;
+            left: 0;
+            text-align: center;
+        }
+
+        .this-menu {
+            display: none;
+        }
+
+        #mobile-menu {
+            color: #ff7373;
+            display: block;
+        }
+
+        #avatar {
+            margin-top: 150px;
+            width: 18rem;
+            background: linear-gradient(160deg, #54f1ac, #5194d8);
+            padding: 8px;
+        }
+
+        #user-profile-badge-svg {
+            display: inline-block;
+            margin-top: -9px;
+            width: 25px;
+            margin-left: 3px;
+        }
+    }
+</style>
+
+</html>

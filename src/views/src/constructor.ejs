@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:title" content="Jean Bot"/>
+    <meta property="og:description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:image" content="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180" />
+    <meta property="og:url" content=" https://botjean.glitch.me/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7289DA">
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/<%= guild_id %>/<%= guild_icon %>.png">
+  <title>Jean Bot - <%= guild_name %></title>
+</head>
+
+<body>
+    <%- include("modules/default/menu") -%>
+    <div class="editForm" style="margin-top: 200px; margin-bottom: 100px; margin-left: 10%; margin-right: 10%;">
+        <div class="title" style="text-align: center;">
+            <h1 style="font-size: 40px; background: linear-gradient(50deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Embed Constructor</h1>
+        </div>
+        <form method="POST" action="/guild/<%= guild_id %>/utility/new/embed/update" class="form-horizontal">
+          
+            <label for="title" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Name</label>
+            <div class="input-group mb-3">
+                <input name="name" type="text" class="form-control" placeholder="Name" aria-label="Name"
+                    aria-describedby="basic-addon1" onkeypress="return AvoidSpace(event)" id="nameInput" maxlength="45" required>
+            </div>
+          
+            
+            <label for="author" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Author</label>
+            <div class="input-group mb-5">
+                <input name="authorName" type="text" class="form-control" placeholder="Author Name" aria-label="Author Name"
+                    aria-describedby="basic-addon1" id="authorNameInput" maxlength="2048">
+                <input name="authorImageURL" type="text" class="form-control" placeholder="Author Image URL" aria-label="Author Image URL"
+                      aria-describedby="basic-addon1" id="authorImageURLInput" maxlength="2048">
+                <input name="authorURL" type="text" class="form-control" placeholder="Author URL" aria-label="Author URL"
+                      aria-describedby="basic-addon1" id="authorURLInput" maxlength="2048">
+            </div>
+          
+            <label for="title" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Title</label>
+            <div class="input-group mb-3">
+                <input name="title" type="text" class="form-control" placeholder="Title" aria-label="Title"
+                    aria-describedby="basic-addon1" id="titleInput" maxlength="256">
+            </div>
+          
+            <label for="description" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Description</label>
+            <div class="input-group mb-3">
+                <input name="description" type="text" class="form-control" placeholder="Description" aria-label="Description"
+                    aria-describedby="basic-addon1" id="descriptionInput" maxlength="2048">
+            </div>
+            <div class="input-group mb-5 fields-contener">
+              <div class="input-group mb-3">
+                <input name="field1" type="text" class="form-control input1"  style="border: 0;" placeholder="Field 1" aria-label="Field 1"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+                <input name="field1value" type="text" class="form-control input1" style="background: #565656; color: #ffffff; border: 0;" placeholder="Value" aria-label="Field 1 Value"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+              </div>
+              <div class="input-group mb-3">
+                <input name="field2" type="text" class="form-control input2"  style="border: 0;" placeholder="Field 2" aria-label="Field 2"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+                <input name="field2value" type="text" class="form-control input2" style="background: #565656; color: #ffffff; border: 0;" placeholder="Value" aria-label="Field 1
+                2 Value"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+              </div>
+              <div class="input-group mb-3">
+                <input name="field3" type="text" class="form-control input3"  style="border: 0;" placeholder="Field 3" aria-label="Field 3"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+                <input name="field3value" type="text" class="form-control input3" style="background: #565656; color: #ffffff; border: 0;" placeholder="Value" aria-label="Field 3
+                3 Value"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+              </div>
+              <div class="input-group mb-3">
+                <input name="field4" type="text" class="form-control input4"  style="border: 0;" placeholder="Field 4" aria-label="Field 4"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+                <input name="field4value" type="text" class="form-control input4" style="background: #565656; color: #ffffff; border: 0;" placeholder="Value" aria-label="Field 4
+                4 Value"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+              </div>
+              <div class="input-group mb-3">
+                <input name="field5" type="text" class="form-control input5"  style="border: 0;" placeholder="Field 5" aria-label="Field 5"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+                <input name="field5value" type="text" class="form-control input5" style="background: #565656; color: #ffffff; border: 0;" placeholder="Value" aria-label="Field 5
+                5 Value"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+              </div>
+              <div class="input-group mb-3">
+                <input name="field6" type="text" class="form-control input6"  style="border: 0;" placeholder="Field 6" aria-label="Field 6"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+                <input name="field6value" type="text" class="form-control input6" style="background: #565656; color: #ffffff; border: 0;" placeholder="Value" aria-label="Field 6
+                6 Value"
+                    aria-describedby="basic-addon1" id="fieldInput" maxlength="256">
+              </div>
+            </div>
+            <label for="thumbnail" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Thumbnail</label>
+            <div class="input-group mb-5">
+                <input name="thumbnail" type="text" class="form-control" placeholder="Thumbnail" aria-label="Thumbnail"
+                    aria-describedby="basic-addon1" id="thumbnailInput" maxlength="2048">
+            </div>
+            <label for="thumbnail" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Image</label>
+            <div class="input-group mb-5">
+                <input name="image" type="text" class="form-control" placeholder="Image URL" aria-label="Image URL"
+                    aria-describedby="basic-addon1" id="imageInput" maxlength="2048">
+            </div>
+            <label for="footer" style="font-size: 18px; background: linear-gradient(160deg, #54f1ac, #5194d8); -webkit-text-fill-color: transparent; -webkit-background-clip: text; font-weight: 600;">Footer</label>
+            <div class="input-group mb-5">
+                <input name="footerText" type="text" class="form-control" placeholder="Footer Text" aria-label="Footer"
+                    aria-describedby="basic-addon1" id="footerTextInput" maxlength="2048">
+                <input name="footerURL" type="text" class="form-control" placeholder="Footer Image URL" aria-label="Footer"
+                      aria-describedby="basic-addon1" id="footerURLInput" maxlength="2048">
+            </div>
+            
+            <a href="/guild/<%= guild_id %>/utility" src="/guild/<%= guild_id %>/utility" class="btn btn-outline-danger">Cancel</a>
+            <button class="btn btn-outline-success" type="submit" onclick="check()" onchange="check()">Save</button>
+        </form>
+    </div>
+    <script>
+        let checkTitle = document.getElementById("titleInput");
+        let checkDescription = document.getElementById("descriptionInput");
+        let checkFooter = document.getElementById("footerTextInput");
+        let checkFooterURL = document.getElementById("footerURLInput")
+        let checkField = document.getElementById("fieldInput");
+        let checkName = document.getElementById("nameInput");
+        let checkThumbnail = document.getElementById("thumbnailInput");
+        let checkImage = document.getElementById("imageInput");
+      
+        let authorName = document.getElementById("authorNameInput");
+        let authorURL = document.getElementById("authorURLInput");
+        let authorImageURL = document.getElementById("authorImageURLInput");
+      
+        function AvoidSpace(event) {
+          var k = event ? event.which : window.event.keyCode;
+          if (k == 32) return false;
+        }
+
+        let embeds = <%- JSON.stringify(embeds) %>;
+
+        function check() {
+            let thisName = embeds.find(e => e.name.toLowerCase() === checkName.value.toLowerCase());          
+            if (thisName) {
+              alert("This name already exist.")
+              return event.preventDefault();
+            }
+          
+            let matchThis = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg|webp))/g;
+            let withThis = new RegExp(matchThis);
+          
+            let matchThisUrl = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g;
+            let withThisUrl = new RegExp(matchThisUrl);
+          
+            if(authorURL.value.length > 0){
+              if(!authorURL.value.match(withThisUrl)){
+                alert("Author URL: You need provide a valid URL.")
+                return event.preventDefault();
+              }
+            }
+          
+            if(authorImageURL.value.length > 0){
+              if(!authorImageURL.value.match(withThis)){
+                alert("Author Image URL: You need provide a valid image URL.")
+                return event.preventDefault();
+              }
+            }
+          
+            if(checkTitle.value.length > 256){
+                alert("Authorname: You reach the max characters. 256");
+                return event.preventDefault();
+            }
+          
+            if(checkTitle.value.length > 256){
+                alert("Title: You reach the max characters. 256");
+                return event.preventDefault();
+            }
+          
+            if(checkDescription.value.length > 2048){
+                alert("Description: You reach the max characters. 2048");
+                return event.preventDefault();
+            }
+          
+            if(checkFooter.value.length > 2048){
+                alert("Footer: You reach the max characters. 2048");
+                return event.preventDefault();
+            }
+          
+            if(checkField.value.length > 2048){
+                alert("Field: You reach the max characters. 2048");
+                return event.preventDefault();
+            }
+          
+            if(checkImage.value.length > 0){
+              if(!checkImage.value.match(withThis)){
+                alert("Image: You need provide a valid image URL.")
+                return event.preventDefault();
+              }
+            }
+          
+            if(checkThumbnail.value.length > 0){
+              if(!checkThumbnail.value.match(withThis)){
+                alert("Thumbnail: You need provide a valid image URL.")
+                return event.preventDefault();
+              }
+            }
+          
+            if(checkFooterURL.value.length > 0){
+              if(!checkFooterURL.value.match(withThis)){
+                alert("Footer URL: You need provide a valid image URL.")
+                return event.preventDefault();
+              }
+            }
+        }
+    </script>
+</body>
+<style>
+    body {
+        max-width: 100%;
+        font-family: 'Quicksand', sans-serif;
+        background-color: #141414;
+        margin: 0;
+    }
+
+    #avatar {
+        margin-top: 10%;
+        width: 22rem;
+        background: linear-gradient(160deg, #54f1ac, #5194d8);
+        padding: 8px;
+    }
+
+    #mobile-menu {
+        color: #ff7373;
+        display: none;
+    }
+
+    .this-menu {
+        display: block;
+    }
+
+    input[type="text"] {
+    outline: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-top-style: none;
+    background: #141414;
+    color: #ffffff;
+    border-color: rgb(216, 216, 216);
+  }
+
+  #list-all {
+    background: #141414;
+    height: 120px;
+    width: 250px;
+    overflow: auto;
+  }
+
+  #list-all::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  #list-all::-webkit-scrollbar-track {
+    background: #141414;
+  }
+
+  #list-all::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+  }
+
+  #list-all::-webkit-scrollbar-thumb:hover {
+    border-radius: 100px;
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 0;
+    right: 10px;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+    @media only screen and (max-width: 992px) {
+        .header-to-fx {
+            text-align: center;
+        }
+
+        .separator {
+            margin-left: 0;
+        }
+
+        .test {
+            max-width: 50%;
+            overflow: hidden;
+        }
+
+        label,
+        h1,
+        p,
+        button,
+        input {
+            margin-right: 5%;
+            left: 0;
+            text-align: center;
+        }
+
+        .this-menu {
+            display: none;
+        }
+
+        #mobile-menu {
+            color: #ff7373;
+            display: block;
+        }
+    }
+</style>
+
+</html>

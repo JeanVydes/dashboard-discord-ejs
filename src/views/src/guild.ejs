@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:title" content="Jean Bot"/>
+    <meta property="og:description" content="Discord Jean Bot's official bot page, where you can find his dashboard." />
+    <meta property="og:image" content="https://cdn.glitch.com/6129854a-8deb-4516-98cf-a90429182a4e%2Fthumbnails%2Flogo_icon.png?1595823786180" />
+    <meta property="og:url" content=" https://botjean.glitch.me/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7289DA">
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/<%= guild_id %>/<%= guild_icon %>.png">
+  <title>Jean Bot - <%= guild_name %></title>
+</head>
+
+<body>
+  <%- include("modules/default/menu") -%>
+  <%- include("modules/dashboard/guild") -%>
+</body>
+<style>
+  body {
+    max-width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    background: #141414;
+    margin: 0;
+    background-repeat: no-repeat;
+  }
+
+  #guild-icon {
+    width: 280px;
+  }
+
+  .card-module {
+    margin-top: 2%;
+    display: inline-block;
+  }
+
+  .card-separator {
+    margin-left: 2%;
+  }
+
+  #card-image {
+    margin-left: 5%;
+    width: 120%;
+  }
+
+  h1 {
+    background: linear-gradient(160deg, #54f1ac, #5194d8);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  .locked-module {
+    cursor: not-allowed;
+  }
+
+  .card-module {
+    justify-content: center;
+  }
+
+  .no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  #mobile-menu {
+    color: #ff7373;
+    display: none;
+  }
+
+  .this-menu {
+    display: block;
+  }
+
+  #reverse-mobile-menu {
+    display: none;
+  }
+
+  @media only screen and (max-width: 992px) {
+
+    #all-cards {
+      margin-top: 40px;
+    }
+
+    .card-separator {
+      margin-left: 0;
+    }
+
+    .this-menu {
+      display: none;
+    }
+
+    #mobile-menu {
+      color: #ff7373;
+      display: block;
+    }
+
+    #reverse-mobile-menu {
+      display: none;
+    }
+  }
+</style>
+
+</html>
