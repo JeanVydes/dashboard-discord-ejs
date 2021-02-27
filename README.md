@@ -1,3 +1,3 @@
-# Dashboard para Bots de Discord con EJS, Mongoose y Discord.js
+# Dashboard for Discord Bots
 
-.
+Free for everyone.
