@@ -64,7 +64,7 @@ client.on("ready", () => {
   console.log("Client connected with dashboard.");
 });
 
-client.login("token");
+client.login(config.CLIENT_BOT_TOKEN);
 
 app.use(bodyParser.json());
 //End Passport
