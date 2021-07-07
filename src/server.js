@@ -55,7 +55,7 @@ app.enable("trust proxy");
 
 const Discord = require("discord.js");
 
-let client = new Discord.client();
+const client = new Discord.Client();
 
 client.on("ready", () => {
   //943189247 Permissions
