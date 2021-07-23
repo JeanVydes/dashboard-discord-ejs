@@ -1,0 +1,28 @@
+{
+  "name": "jean-bot-client",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "npm run dev"
+  },
+  "keywords": [
+    "*"
+  ],
+  "author": "Jean",
+  "license": "MIT",
+  "dependencies": {
+    "cluster": "^0.7.7",
+    "eris": "^0.13.3",
+    "eris-additions": "^1.4.1",
+    "eris-light": "git+https://git@github.com/JeanCarlosVR/eris-ligh.git",
+    "eris-sharder": "^1.10.0",
+    "express": "^4.17.1",
+    "humanize-duration": "^3.23.1",
+    "mongoose": "^5.9.24",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4"
+  }
+}
