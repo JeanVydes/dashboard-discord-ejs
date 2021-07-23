@@ -55,7 +55,7 @@ app.enable("trust proxy");
 
 const Discord = require("discord.js");
 
-let client = new Discord.client();
+const client = new Discord.Client();
 
 client.on("ready", () => {
   //943189247 Permissions
@@ -64,7 +64,7 @@ client.on("ready", () => {
   console.log("Client connected with dashboard.");
 });
 
-client.login("token");
+client.login(config.CLIENT_BOT_TOKEN);
 
 app.use(bodyParser.json());
 //End Passport
