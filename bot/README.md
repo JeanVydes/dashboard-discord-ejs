@@ -1,4 +1,4 @@
-The dashboard but without bot?
+The dashboard but without bot? naa... is all for you
 
 The bot is based on eris
 
